@@ -2,7 +2,6 @@ import Sort from './Sort';
 
 export default function Content(props) {
   const handleSort = (value) => {
-    console.log(value);
     props.onFormChange('sortedBy', value);
   };
 

@@ -14,9 +14,9 @@ function SearchForm({ id, created, name, onFormChange }) {
       <>
         <div className="form-floating mb-3">
           <input type="text" name="id" value={id} onChange={handleChange} className="form-control" id="documentId" />
-          <label for="documentId">ID документа</label>
+          <label htmlFor="documentId">ID документа</label>
         </div>
-        <div class="row g-2 mb-3">
+        <div className="row g-2 mb-3">
           <DateRange value={created} onChange={handleDateRange} />
         </div>
         <div className="form-floating">

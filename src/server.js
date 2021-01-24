@@ -7,7 +7,6 @@ class Server {
 
   constructor(amount) {
     this.data = this._generateData(amount);
-    console.log(this.data);
   }
 
   _generateData(amount) {
