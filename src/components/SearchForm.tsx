@@ -1,12 +1,19 @@
+import {ISearchRules} from '../interfaces';
 import DateRange from './DateRange';
 
-function SearchForm({ id, created, name, onFormChange }) {
-    const handleChange = (event) => {
+type TDate = [Date, Date];
+
+interface IProps extends ISearchRules {
+  onFormChange: (name: string, value: TDate | string) => void;
+}
+
+function SearchForm({ id, created, name, onFormChange }: IProps) {
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const target = event.target;
         onFormChange(target.name, target.value);
     };
 
-    const handleDateRange = (range) => {
+    const handleDateRange = (range: TDate) => {
         onFormChange('created', range);
     };
 

@@ -1,36 +1,37 @@
-import {getId, getRandomDate, getRandomString, filterArray, compareBy} from './helper.js'
+import {getId, getRandomDate, getRandomString, filterArray, compareBy} from './helper'
+import {ISearchRules, IDataItem, IFilters} from './interfaces';
 
 const AMOUNT = 100;
 
 class Server {
-  data = [];
+  data: IDataItem[] = [];
 
-  constructor(amount) {
+  constructor(amount: number) {
     this.data = this._generateData(amount);
   }
 
-  _generateData(amount) {
-    let result = [];
+  _generateData(amount: number): IDataItem[] {
+    let result: IDataItem[] = [];
     for (let i = 0; i < amount; i++) {
       result.push({
           id: getId(),
+          created: getRandomDate(),
           name: getRandomString(),
-          created: getRandomDate().toJSON(),
       });
     }
     return result;
   }
 
-  filterBy({ id, created, name, sortedBy }) {
-    let filters = {};
-    const [start, end] = created;
+  filterBy({ id, created, name, sortedBy }: ISearchRules) {
+    let filters: IFilters = {};
+    const [start, end]: [Date, Date] = created;
     if (id) {
-        filters['id'] = (item) => item == id;
+        filters['id'] = (item: string) => item == id;
     } else {
-      filters['created'] = (item) => {
+      filters['created'] = (item: string) => {
           return (new Date(item) >= start && new Date(item) <= end);
       };
-      filters['name'] = (item) => item.indexOf(name) > -1;
+      filters['name'] = (item: string) => item.indexOf(name) > -1;
     };
 
     const filtered = filterArray(this.data, filters);

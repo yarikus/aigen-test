@@ -1,18 +1,20 @@
+
 import Header from './components/Header';
 import Sidebar from './components/Sidebar';
 import Content from './components/Content';
 import SearchForm from './components/SearchForm';
 import Section from './components/Section';
 
-import {useState, useEffect, useCallback} from 'react';
-import API from './server.js';
+import {useState, useEffect} from 'react';
+import API from './server';
+
+import {IDataItem, ISearchRules} from './interfaces';
 
 function App() {
-  const [error, setError] = useState(null);
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [items, setItems] = useState([]);
+  const [isLoaded, setIsLoaded] = useState<boolean>(false);
+  const [items, setItems] = useState<IDataItem[]>([]);
 
-  const [searchRules, setSearchRules] = useState({
+  const [searchRules, setSearchRules] = useState<ISearchRules>({
     id: '',
     created: [new Date(2017, 1), new Date(2021, 12)],
     name: '',
@@ -25,10 +27,6 @@ function App() {
         (result) => {
           setIsLoaded(true);
           setItems(result);
-        },
-        (error) => {
-          setIsLoaded(true);
-          setError(error);
         }
       )
   }, []);
@@ -40,18 +38,16 @@ function App() {
       });
   }, [searchRules]);
 
-  const handleSearchFormChange = useCallback((name, value) => {
+  const handleSearchFormChange = (name: string, value: any) => {
     setSearchRules((prevState) => {
       return {
         ...prevState,
         [name]: value
       }
     });
-  }, [searchRules]);
+  };
 
-  if (error) {
-    return <div>Ошибка: {error.message}</div>;
-  } else if (!isLoaded) {
+  if (!isLoaded) {
     return <div>Загрузка...</div>;
   } else {
     return (

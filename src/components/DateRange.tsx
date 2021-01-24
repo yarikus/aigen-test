@@ -1,6 +1,13 @@
 import {useState, useEffect, useRef} from 'react';
 
-export default function DateRange({value, onChange}) {
+type TDate = [Date, Date];
+
+interface IProps {
+  value: TDate; 
+  onChange: (value: TDate) => void;
+}
+
+export default function DateRange({value, onChange}: IProps) {
     const [start, end] = value;
 
     const [range, setRange] = useState({
@@ -15,7 +22,7 @@ export default function DateRange({value, onChange}) {
       onChange([ new Date(range.from), new Date(range.to) ]);
     }, [range]);
 
-    function handleChange(event) {
+    function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
       const target = event.target;
       const value = target.value;
       const name = target.name;

@@ -1,4 +1,4 @@
-function Header({ title }) {
+function Header({ title }: { title: string }) {
   return (
     <header className="navbar navbar-dark sticky-top bg-dark">
       <div className="container-fluid">

@@ -1,11 +1,18 @@
 import {useState, useEffect} from 'react';
 
-export default function Sort({ value, onChange }) {
-    const [state, setState] = useState(value);
+interface IProps {
+  value: IData; 
+  onChange: (value: IData) => void;
+}
 
-    const handleChange = (event) => {
+type IData = [string, string];
+
+export default function Sort({ value, onChange }: IProps) {
+    const [state, setState] = useState<IData>(value);
+
+    const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
       setState((prev) => {
-        let newState = [ ...prev ];
+        let newState: IData = [ ...prev ];
         if (event.target.name === 'sort') {
             newState[0] = event.target.value;
         } else if (event.target.name === 'order') {

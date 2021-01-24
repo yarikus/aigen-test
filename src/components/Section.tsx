@@ -1,6 +1,7 @@
 import {useState} from 'react';
+import {IDataItem} from '../interfaces';
 
-export default function Section({ id, name, created }) {
+export default function Section({ id, name, created }: IDataItem) {
   const [isCollapsed, setCollapse] = useState(false);
 
   return (
