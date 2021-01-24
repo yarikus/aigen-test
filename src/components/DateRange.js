@@ -32,14 +32,14 @@ export default function DateRange({value, onChange}) {
       <>
         <div class="col-md">
           <div class="form-floating">
-            <input ref={fromRef} name="from" value={range.from} onChange={handleChange} type="date" class="form-control" id="from" />
-            <label for="from">От</label>
+            <input ref={fromRef} name="from" value={range.from} onChange={handleChange} type="date" className="form-control" id="from" />
+            <label htlmFor="from">От</label>
           </div>
         </div>
         <div class="col-md">
           <div class="form-floating">
-            <input ref={toRef} name="to" value={range.to} onChange={handleChange} type="date" class="form-control" id="to" />
-            <label for="to">До</label>
+            <input ref={toRef} name="to" value={range.to} onChange={handleChange} type="date" className="form-control" id="to" />
+            <label htmlFor="to">До</label>
           </div>
         </div>
       </>

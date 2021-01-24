@@ -65,7 +65,7 @@ function App() {
             </Sidebar>
 
             <Content title="Документы" {...searchRules} onFormChange={handleSearchFormChange}>
-              <div class="accordion accordion-flush">
+              <div className="accordion accordion-flush">
                 {items.map(item => (
                   <Section key={item.id} {...item} />
                 ))}
