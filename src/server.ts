@@ -26,7 +26,7 @@ class Server {
     let filters: IFilters = {};
     const [start, end]: [Date, Date] = created;
     if (id) {
-        filters['id'] = (item: string) => item == id;
+        filters['id'] = (item: string) => item === id;
     } else {
       filters['created'] = (item: string) => {
           return (new Date(item) >= start && new Date(item) <= end);

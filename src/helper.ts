@@ -8,12 +8,12 @@ export function getRandomString(): string {
     return Math.random().toString(36).substring(2, 15);
 }
 
-export function getRandomInt(min: number, max: number) {
+export function getRandomInt(min: number, max: number): number {
     return Math.floor(Math.random() * (max - min)) + min;
 }
 
 export function getRandomDate(): Date {
-    const currentYear = (new Date).getFullYear();
+    const currentYear: number = (new Date()).getFullYear();
     return new Date(
         getRandomInt(currentYear - 10, currentYear + 1),
         getRandomInt(0, 11)
